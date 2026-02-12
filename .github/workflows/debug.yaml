@@ -1,0 +1,29 @@
+name: Run Custom Functest
+on:
+  workflow_dispatch:
+    inputs:
+      test_name:
+        required: true
+        type: string
+
+      type:
+        required: true
+        type: string
+
+      virtual:
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  run-functest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Print values
+        run: |
+          echo "Test Name: ${{ github.event.inputs.test_name }}"
+          echo "TYPE: ${{ github.event.inputs.type }}"
+          echo "VIRTUAL: ${{ github.event.inputs.virtual }}"
