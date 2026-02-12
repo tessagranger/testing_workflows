@@ -8,7 +8,11 @@ on:
 
       type:
         required: true
-        type: string
+        type: choice
+        options:
+          - functest
+          - functest-virtual
+          - functest-virtual-ovn
 
       virtual:
         required: true
