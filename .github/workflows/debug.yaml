@@ -31,3 +31,4 @@ jobs:
           echo "Test Name: ${{ github.event.inputs.test_name }}"
           echo "TYPE: ${{ github.event.inputs.type }}"
           echo "VIRTUAL: ${{ github.event.inputs.virtual }}"
+          echo "Esto es test branch: ${{ github.ref }}"
