@@ -6,6 +6,19 @@ on:
         required: true
         type: string
 
+      Asic:
+        required: true
+        type: choice
+        options:
+          - bristol
+          - gibson
+          - guild
+          - tele
+          - tele_2
+          - squier
+          - squier_3
+          - rogue
+      
       Number of runs:
         required: true
         type: string
@@ -25,8 +38,6 @@ on:
 jobs:
   run-functest:
     runs-on: ubuntu-latest
-    container:
-      image: my.image/dev:${{ github.event.inputs.architecture == 'ARM64' && 'arm64_' || '' }}latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -37,3 +48,4 @@ jobs:
           echo "TYPE: ${{ github.event.inputs.type }}"
           echo "VIRTUAL: ${{ github.event.inputs.virtual }}"
           echo "Esto es test branch: ${{ github.ref }}"
+          echo "Esto es runs: ${{ github.event.inputs['Number of runs'] }}"
