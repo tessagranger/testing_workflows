@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       test_names:
-        description: description: "Test name(s), use pytest syntax for multiple tests (e.g., 'test_guild_..,test_guild_..')"
+        description: "Test name(s), use pytest syntax for multiple tests (e.g., 'test_guild_..,test_guild_..')"
         required: true
         type: string
 
