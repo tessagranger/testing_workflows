@@ -6,15 +6,18 @@ on:
         required: true
         type: string
 
-      type:
+      Number of runs:
+        required: true
+        type: string
+
+      Architecture:
         required: true
         type: choice
         options:
-          - functest
-          - functest-virtual
-          - functest-virtual-ovn
+          - x64
+          - ARM64
 
-      virtual:
+      vdut:
         required: true
         type: boolean
         default: false
@@ -22,6 +25,8 @@ on:
 jobs:
   run-functest:
     runs-on: ubuntu-latest
+    container:
+      image: my.image/dev:${{ github.event.inputs.architecture == 'ARM64' && 'arm64_' || '' }}latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -31,3 +36,4 @@ jobs:
           echo "Test Name: ${{ github.event.inputs.test_name }}"
           echo "TYPE: ${{ github.event.inputs.type }}"
           echo "VIRTUAL: ${{ github.event.inputs.virtual }}"
+          echo "Esto es test branch: ${{ github.ref }}"
